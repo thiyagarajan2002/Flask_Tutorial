@@ -30,7 +30,6 @@ def hello_world():
         <li>Database: SQL</li>
         <li>Operating Systems: Linux, Windows</li>
     </ul>
-
     <p>I have built several impactful projects, including:</p>
     <ol>
         <li>A Flask-based Result Publishing Website</li>
