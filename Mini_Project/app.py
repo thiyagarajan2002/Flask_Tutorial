@@ -1,14 +1,12 @@
 import datetime
 import os
-import json
 
 def Create_Data(data):
     date = datetime.date.today().isoformat()
     base_dir = os.getcwd() + '/data/'
-    os.makedirs(base_dir, exist_ok=True)
     file_path = base_dir + date + ".txt"
     with open(file_path, 'w') as file:
-        json.dump(data, file)
+        file.write("\n".join(data))
     print("Data saved successfully.")
 
 def View_Data(date):
@@ -16,12 +14,11 @@ def View_Data(date):
     file_path = base_dir + date + ".txt"
     try:
         with open(file_path, 'r') as file:
-            data = json.load(file)
-            return '\n'.join(data)
-    except FileNotFoundError:
+            data=file.read()
+            return ''.join(data)
+    except:
         return "No data found for the given date."
-    except json.JSONDecodeError:
-        return "Corrupted data file."
+
 
 def Delete_Data(date):
     base_dir = os.getcwd() + '/data/'
@@ -29,7 +26,7 @@ def Delete_Data(date):
     try:
         os.remove(file_path)
         print("Data deleted successfully.")
-    except FileNotFoundError:
+    except:
         print("No data found to delete.")
 
 while True:
@@ -40,7 +37,7 @@ while True:
     print("4. Exit")
     try:
         choice = int(input("Enter your choice: "))
-    except ValueError:
+    except:
         print("Invalid Input")
         continue
 
