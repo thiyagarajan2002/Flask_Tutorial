@@ -58,7 +58,7 @@ while True:
         date = input("Enter date (YYYY-MM-DD) to delete: ")
         Delete_Data(date)
     elif choice == 4:
-        print("Exiting...")
+        print("Exit")
         break
     else:
         print("Invalid Input")
