@@ -20,6 +20,11 @@ def register_user(data: dict):
     result = True if mycol.insert_one(data) else False
     return result
 
+def check_email(email):
+    data = mycol.find_one({"Email Id": email})
+    if data:
+        return True 
+    return False
 
 #print(register("raja","trj08012002@gmail.com",6369671812,"male","IT","AI","trj9543460192"))
 #print(login("trj08012002@gmail.com","trj9543460192"))

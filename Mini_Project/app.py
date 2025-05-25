@@ -4,6 +4,7 @@ import os
 def Create_Data(data):
     date = datetime.date.today().isoformat()
     base_dir = os.getcwd() + '/data/'
+    os.makedirs(base_dir, exist_ok=True)
     file_path = base_dir + date + ".txt"
     with open(file_path, 'w') as file:
         file.write("\n".join(data))
@@ -16,7 +17,7 @@ def View_Data(date):
         with open(file_path, 'r') as file:
             data=file.read()
             return ''.join(data)
-    except:
+    except Exception:
         return "No data found for the given date."
 
 
@@ -26,7 +27,7 @@ def Delete_Data(date):
     try:
         os.remove(file_path)
         print("Data deleted successfully.")
-    except:
+    except Exception:
         print("No data found to delete.")
 
 while True:

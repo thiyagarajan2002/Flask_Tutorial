@@ -19,6 +19,13 @@
         <input type="password" id="password" name="password" required />
       </div>
       <button type="submit" class="btn">Login</button>
+      {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
     </form>
     <p class="register-link">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
   </div>
