@@ -1,0 +1,111 @@
+/* Reset and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f6fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container for the form */
+.register-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Heading */
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* Input fields and dropdowns */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Link to login */
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .register-container {
+    padding: 20px;
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+}
