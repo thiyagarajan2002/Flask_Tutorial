@@ -18,7 +18,7 @@ mydb = myclient[db]
 mycol = mydb["customers"]
 
 def login_user(email,password):
-    data=mycol.find_one({"Email Id":email,"Password":password})
+    data=mycol.find_one({"Email Id":email})
     if data:
         return data
     return None
