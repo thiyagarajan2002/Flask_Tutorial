@@ -41,13 +41,12 @@ def register_process():
     domain = request.form.get("domain")
     password = request.form.get("password")
     confirm_password = request.form.get("confirm-password")
-    date_time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    if password != confirm_password:
-        flash("Passwords do not match")
-        return redirect(url_for('register'))
+    date_time=datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
     if check_email(email):
         flash("Email already exists")
+        return redirect(url_for('register'))
+    if password != confirm_password:
+        flash("Passwords do not match")
         return redirect(url_for('register'))
     data = {
             "Full Name": fullname,
