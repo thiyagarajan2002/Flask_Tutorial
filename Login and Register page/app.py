@@ -1,5 +1,5 @@
-from flask import Flask,render_template,request,redirect,url_for,flash
-from connection import login_user,register_user,check_email,password_hash,password_check
+from flask import Flask,render_template,request,redirect,url_for,flash,session,jsonify
+from connection import login_user,register_user,check_email,password_hash,password_check,login_required
 from datetime import datetime
 
 app=Flask(__name__)
@@ -8,7 +8,10 @@ app.secret_key = 'random string'
 def home():
     return render_template('home.html')
  
-
+@app.route('/dashboard',methods=['GET'])
+@login_required
+def dashboard():
+    return "this is dashboard"
 @app.route('/login',methods=['GET'])
 def login():
     return render_template('login.html')
@@ -25,7 +28,8 @@ def login_process():
     result=login_user(email,password)
     if result:
         if password_check(password, result['Password']):
-            return "Login success"
+            session['email'] = email
+            return redirect(url_for('dashboard'))
         flash("Invalid Password")
         return redirect(url_for('login'))
     flash("Invalid Details")
@@ -63,7 +67,13 @@ def register_process():
         return "Register success"
     flash("Registration failed")
     return redirect(url_for('register'))
-    
-
+  
+@app.route('/logout', methods=['GET'])
+def logout():
+    session.clear()
+    return redirect(url_for('login'))  
+@app.route('/session', methods=['GET'])
+def session_info():
+    return jsonify(session)
 if __name__=='__main__':
     app.run(host='localhost',debug=True,port=5050)
