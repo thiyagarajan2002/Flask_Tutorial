@@ -24,10 +24,10 @@ def login_process():
     password = request.form.get("password")
     result=login_user(email,password)
     if result:
-        if not password_check(password, result['Password']):
-            flash("Invalid Password")
-            return redirect(url_for('login'))
-        return "Login success"
+        if password_check(password, result['Password']):
+            return "Login success"
+        flash("Invalid Password")
+        return redirect(url_for('login'))
     flash("Invalid Details")
     return redirect(url_for('login'))
 
@@ -57,6 +57,7 @@ def register_process():
             "Department": department,
             "Domain": domain,
             "Password": password_hash(password)
+            "Date and time":date_time # type: ignore
     }
     result = register_user(data)  # ⬅️ Use renamed function here
     if result:
