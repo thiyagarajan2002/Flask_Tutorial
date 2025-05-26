@@ -56,7 +56,7 @@ def register_process():
             "Gender": gender,
             "Department": department,
             "Domain": domain,
-            "Password": password_hash(password)
+            "Password": password_hash(password),
             "Date and time":date_time # type: ignore
     }
     result = register_user(data)  # ⬅️ Use renamed function here
