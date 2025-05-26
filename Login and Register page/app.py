@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
-from connection import login_user,register_user,check_email
+from connection import login_user,register_user,check_email,password_hash,password_check
 from datetime import datetime
 
 app=Flask(__name__)
@@ -24,6 +24,9 @@ def login_process():
     password = request.form.get("password")
     result=login_user(email,password)
     if result:
+        if not password_check(password, result['Password']):
+            flash("Invalid Password")
+            return redirect(url_for('login'))
         return "Login success"
     flash("Invalid Details")
     return redirect(url_for('login'))
@@ -53,7 +56,7 @@ def register_process():
             "Gender": gender,
             "Department": department,
             "Domain": domain,
-            "Password": password
+            "Password": password_hash(password)
     }
     result = register_user(data)  # ⬅️ Use renamed function here
     if result:
